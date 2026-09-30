@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: mart_mes_site_daily_metrics
+    description: "Manufacturing-execution metrics (12) grouped by site + batch day."
+  - name: mart_mes_product_metrics
+    description: "Manufacturing-execution metrics (8) grouped by product across sites."
+  - name: mart_lims_assay_quality_metrics
+    description: "Lab-result quality metrics (12) grouped by site + assay."
+  - name: mart_qms_deviation_metrics
+    description: "Deviation/CAPA metrics (11) grouped by site."
+  - name: mart_cross_system_batch_quality
+    description: "Batch-grain metrics (7) joining MES + LIMS + QMS."
+    columns:
+      - name: batch_id
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_mes_batches')
+              field: batch_id
+  - name: mart_site_quality_scorecard
+    description: "Top-line site scorecard (6) rolling up the cross-system batch mart."
+
+# Total implemented in full, runnable SQL above: 12 + 8 + 12 + 11 + 7 + 6 = 56 metrics.
+#
+# Scaling beyond 56 (documented pattern, not written out line-by-line here):
+# the same three group-by shapes above (site+day, product, site+assay) extend
+# directly to additional cuts that a real CMC data team would add next by
+# copying the mart_mes_site_daily_metrics.sql / mart_lims_assay_quality_metrics.sql
+# pattern with a different GROUP BY / filter, e.g.:
+#   - mart_mes_site_daily_metrics sliced by `shift` and by `line_id` (adds ~12 more:
+#     batches/release-rate/yield/cycle-time cut by shift, and again by line)
+#   - mart_lims_assay_quality_metrics sliced by `instrument_id` (instrument drift /
+#     out-of-calibration signals) and by `analyst_id` (analyst-level OOS-rate QA)
+#   - mart_qms_deviation_metrics sliced by `deviation_type` (5 types) instead of
+#     just site, and a rolling-30-day trailing window variant of each rate metric
+#   - product x site cross-tab versions of mart_mes_product_metrics
+# Each of these is a mechanical repeat of an already-implemented model with the
+# GROUP BY / WHERE changed -- the same real aggregation logic, just more cuts of
+# it -- which is why it's described here rather than pasted 20 more times.

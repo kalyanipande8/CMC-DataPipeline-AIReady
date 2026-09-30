@@ -1,0 +1,133 @@
+{
+  "row_counts": {
+    "mes_batches": 360,
+    "lims_results": 718,
+    "qms_deviations": 91
+  },
+  "mart_summary": {
+    "mart_mes_site_daily_metrics": {
+      "rows": 262,
+      "metrics_defined": 12
+    },
+    "mart_mes_product_metrics": {
+      "rows": 3,
+      "metrics_defined": 8
+    },
+    "mart_lims_assay_quality_metrics": {
+      "rows": 18,
+      "metrics_defined": 12
+    },
+    "mart_qms_deviation_metrics": {
+      "rows": 3,
+      "metrics_defined": 11
+    },
+    "mart_cross_system_batch_quality": {
+      "rows": 360,
+      "metrics_defined": 7
+    },
+    "mart_site_quality_scorecard": {
+      "rows": 3,
+      "metrics_defined": 6
+    },
+    "total_metrics_defined": 56
+  },
+  "dq_results": [
+    {
+      "check": "mes_batch_id_not_null",
+      "passed": true,
+      "failing_rows": 0,
+      "detail": "0 failing row(s) (threshold 0)"
+    },
+    {
+      "check": "lims_result_value_completeness",
+      "passed": false,
+      "failing_rows": 6,
+      "detail": "6 failing row(s) (threshold 2)"
+    },
+    {
+      "check": "mes_cycle_time_non_negative",
+      "passed": true,
+      "failing_rows": 0,
+      "detail": "0 failing row(s) (threshold 0)"
+    },
+    {
+      "check": "mes_yield_non_negative",
+      "passed": true,
+      "failing_rows": 0,
+      "detail": "0 failing row(s) (threshold 0)"
+    },
+    {
+      "check": "lims_ph_in_plausible_range",
+      "passed": true,
+      "failing_rows": 0,
+      "detail": "0 failing row(s) (threshold 0)"
+    },
+    {
+      "check": "lims_batch_id_exists_in_mes",
+      "passed": true,
+      "failing_rows": 0,
+      "detail": "0 failing row(s) (threshold 0)"
+    },
+    {
+      "check": "qms_batch_id_exists_in_mes",
+      "passed": true,
+      "failing_rows": 0,
+      "detail": "0 failing row(s) (threshold 0)"
+    },
+    {
+      "check": "mes_batch_id_unique",
+      "passed": true,
+      "failing_rows": 0,
+      "detail": "0 failing row(s) (threshold 0)"
+    },
+    {
+      "check": "lims_result_id_unique",
+      "passed": true,
+      "failing_rows": 0,
+      "detail": "0 failing row(s) (threshold 0)"
+    },
+    {
+      "check": "qms_deviation_id_unique",
+      "passed": true,
+      "failing_rows": 0,
+      "detail": "0 failing row(s) (threshold 0)"
+    }
+  ],
+  "dq_pass_count": 9,
+  "dq_total_count": 10,
+  "sla_summary": {
+    "stages": [
+      {
+        "stage": "extract",
+        "duration_sec": 0.4432,
+        "sla_sec": 0.15,
+        "breached": true
+      },
+      {
+        "stage": "transform",
+        "duration_sec": 0.0182,
+        "sla_sec": 3.0,
+        "breached": false
+      },
+      {
+        "stage": "load",
+        "duration_sec": 0.0547,
+        "sla_sec": 3.0,
+        "breached": false
+      },
+      {
+        "stage": "dbt_run",
+        "duration_sec": 0.061,
+        "sla_sec": 3.0,
+        "breached": false
+      },
+      {
+        "stage": "dq_checks",
+        "duration_sec": 0.0053,
+        "sla_sec": 3.0,
+        "breached": false
+      }
+    ],
+    "any_sla_breach": true
+  }
+}

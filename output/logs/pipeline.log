@@ -1,0 +1,31 @@
+2026-09-30 08:50:12,992 [INFO] STAGE START stage=extract sla_sec=5.0
+2026-09-30 08:50:13,473 [INFO] STAGE OK stage=extract duration_sec=0.481 sla_sec=5.0
+2026-09-30 08:50:13,474 [INFO] STAGE START stage=transform sla_sec=5.0
+2026-09-30 08:50:13,490 [INFO] STAGE OK stage=transform duration_sec=0.016 sla_sec=5.0
+2026-09-30 08:50:13,491 [INFO] STAGE START stage=load sla_sec=5.0
+2026-09-30 08:50:13,536 [INFO] STAGE OK stage=load duration_sec=0.045 sla_sec=5.0
+2026-09-30 08:50:13,536 [INFO] STAGE START stage=dbt_run sla_sec=5.0
+2026-09-30 08:50:13,586 [INFO] STAGE OK stage=dbt_run duration_sec=0.050 sla_sec=5.0
+2026-09-30 08:50:13,586 [INFO] STAGE START stage=dq_checks sla_sec=5.0
+2026-09-30 08:50:13,590 [INFO] STAGE OK stage=dq_checks duration_sec=0.004 sla_sec=5.0
+2026-09-30 08:50:29,789 [INFO] STAGE START stage=extract sla_sec=0.15
+2026-09-30 08:50:30,547 [WARNING] ALERT sla_breach stage=extract duration_sec=0.758 sla_sec=0.15 -- exceeded SLA by 0.608s
+2026-09-30 08:50:30,549 [INFO] STAGE START stage=transform sla_sec=3.0
+2026-09-30 08:50:30,601 [INFO] STAGE OK stage=transform duration_sec=0.052 sla_sec=3.0
+2026-09-30 08:50:30,601 [INFO] STAGE START stage=load sla_sec=3.0
+2026-09-30 08:50:30,669 [INFO] STAGE OK stage=load duration_sec=0.067 sla_sec=3.0
+2026-09-30 08:50:30,669 [INFO] STAGE START stage=dbt_run sla_sec=3.0
+2026-09-30 08:50:30,740 [INFO] STAGE OK stage=dbt_run duration_sec=0.071 sla_sec=3.0
+2026-09-30 08:50:30,740 [INFO] STAGE START stage=dq_checks sla_sec=3.0
+2026-09-30 08:50:30,752 [INFO] STAGE OK stage=dq_checks duration_sec=0.012 sla_sec=3.0
+2026-09-30 08:50:52,195 [INFO] STAGE START stage=extract sla_sec=0.15
+2026-09-30 08:50:52,638 [WARNING] ALERT sla_breach stage=extract duration_sec=0.443 sla_sec=0.15 -- exceeded SLA by 0.293s
+2026-09-30 08:50:52,638 [INFO] STAGE START stage=transform sla_sec=3.0
+2026-09-30 08:50:52,656 [INFO] STAGE OK stage=transform duration_sec=0.018 sla_sec=3.0
+2026-09-30 08:50:52,657 [INFO] STAGE START stage=load sla_sec=3.0
+2026-09-30 08:50:52,711 [INFO] STAGE OK stage=load duration_sec=0.055 sla_sec=3.0
+2026-09-30 08:50:52,711 [INFO] STAGE START stage=dbt_run sla_sec=3.0
+2026-09-30 08:50:52,772 [INFO] STAGE OK stage=dbt_run duration_sec=0.061 sla_sec=3.0
+2026-09-30 08:50:52,773 [INFO] STAGE START stage=dq_checks sla_sec=3.0
+2026-09-30 08:50:52,778 [ERROR] ALERT dq_check_failed check=lims_result_value_completeness detail=6 failing row(s) (threshold 2)
+2026-09-30 08:50:52,778 [INFO] STAGE OK stage=dq_checks duration_sec=0.005 sla_sec=3.0

@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: cmc_raw
+    description: >
+      Raw landing tables loaded by the `load_to_snowflake` Airflow task
+      (COPY INTO from the Spark ETL output). In a real deployment these
+      live in the CMC_RAW.STAGING Snowflake schema.
+    database: CMC_RAW
+    schema: STAGING
+    tables:
+      - name: mes_batch_records
+        description: One row per manufactured batch/lot from the MES.
+        columns:
+          - name: batch_id
+            tests:
+              - unique
+              - not_null
+      - name: lims_test_results
+        description: One row per lab test result from the LIMS.
+        columns:
+          - name: result_id
+            tests:
+              - unique
+              - not_null
+          - name: batch_id
+            tests:
+              - not_null
+      - name: qms_deviations
+        description: One row per deviation/CAPA record from the QMS.
+        columns:
+          - name: deviation_id
+            tests:
+              - unique
+              - not_null
